@@ -1,0 +1,30 @@
+struct Point2D {
+    double X;
+    double Y;
+};
+
+typedef struct {
+    struct Point2D Vertice1;
+    struct Point2D Vertice2;
+    struct Point2D Vertice3;
+} Triangle;
+
+Triangle InputTriangle(double x1, double y1, double x2, double y2, double x3, double y3) {
+    Triangle triangle;
+    triangle.Vertice1.X = x1;
+    triangle.Vertice1.Y = y1;
+    triangle.Vertice2.X = x2;
+    triangle.Vertice2.Y = y2;
+    triangle.Vertice3.X = x3;
+    triangle.Vertice3.Y = y3;
+    return triangle;
+}
+
+double AreaTriangle(Triangle* t) {
+    double side1 = sqrt(pow(t->Vertice2.X - t->Vertice1.X, 2) + pow(t->Vertice2.Y - t->Vertice1.Y, 2));
+    double side2 = sqrt(pow(t->Vertice3.X - t->Vertice2.X, 2) + pow(t->Vertice3.Y - t->Vertice2.Y, 2));
+    double side3 = sqrt(pow(t->Vertice1.X - t->Vertice3.X, 2) + pow(t->Vertice1.Y - t->Vertice3.Y, 2));
+    double pperimeter = (side1 + side2 + side3)/2;
+    double Area=sqrt(pperimeter*(pperimeter-side1)*(pperimeter-side2)*(pperimeter-side3));
+    return Area;
+}
